@@ -14,15 +14,15 @@ If git isn't installed, then install it first and then clone the repo
 ```bash
 sudo apt-get -y install git
 ```
-or
-```bash
-git fetch origin
-git reset --hard origin/[tag/branch/commit-id usually: master]
-```
 and then:
 
 ```bash
 git clone https://github.com/rehmatworks/lamp-pack
+```
+or
+```bash
+git fetch origin
+git reset --hard origin/[tag/branch/commit-id usually: master]
 ```
 Step 2: Browse the directory
 ```bash
