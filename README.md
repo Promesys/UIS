@@ -22,7 +22,7 @@ git clone https://github.com/rehmatworks/lamp-pack
 or
 ```bash
 git fetch origin
-git reset --hard origin/[tag/branch/commit-id usually: master]
+git reset --hard origin/master
 ```
 Step 2: Browse the directory
 ```bash
@@ -30,12 +30,12 @@ cd lamp-pack
 ```
 Step 3: Make sp-lamp.sh executable
 ```bash
-chmod +x sp-lamp.sh
+chmod +x uid-start.sh
 ```
 
 Step 4: Execute the script and wait for the configuration to complete
 ```bash
-./sp-lamp.sh
+sudo ./uid-start.sh
 ```
 
 ## Dealing with vhosts
