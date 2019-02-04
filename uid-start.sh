@@ -3,7 +3,7 @@ echo ''
 echo -e "\e[32mWelcome to Ubuntu Installer Script automation bash script\e[39m"
 echo ''
 
-sleep 3
+sleep 1
 
 # Check if is root or not
 if [ "$EUID" -ne 0 ]
@@ -37,8 +37,8 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
     PS3="Please make your choice : "
     
-    # set shuttle list
-    select choice in update endeavour
+    # set option list
+    select choice in update timezone quit
     do
         case $choice in
             update)
@@ -47,10 +47,17 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
                 echo "--------------"
                 sh ./includes/update.sh
                 ;;
-            endeavour)
+            timezone)
+                echo "--------------"
+                echo "Set timezone to Europe/Amsterdam."
+                echo "--------------"
+                sh ./includes/timezone.sh
+                ;;
+            quit)
                 echo "--------------"		
-                echo "Space Shuttle Endeavour is one of three currently operational orbiters in the Space Shuttle." 
-                echo "--------------"		
+                echo "Exiting menu." 
+                echo "--------------"
+                exit		
                 ;;
             *)		
                 echo "Error: Please try again (select 1..7)!"
@@ -60,3 +67,4 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
 else
 	echo -e "\e[31mIncompatible operating system detected. Only selected releases of Ubuntu are supported\e[39m"
 fi
+exit
