@@ -46,12 +46,14 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
                 echo "Run an update and upgrade for packages."
                 echo "--------------"
                 sh ./includes/update.sh
+                exit
                 ;;
             timezone)
                 echo "--------------"
                 echo "Set timezone to Europe/Amsterdam."
                 echo "--------------"
                 sh ./includes/timezone.sh
+                exit
                 ;;
             quit)
                 echo "--------------"		
@@ -67,4 +69,3 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
 else
 	echo -e "\e[31mIncompatible operating system detected. Only selected releases of Ubuntu are supported\e[39m"
 fi
-exit
