@@ -9,3 +9,4 @@
 		echo "Installing essential dependencies"
 		echo ''
 		sudo apt-get install -y build-essential  &>/dev/null
+        exit 0
