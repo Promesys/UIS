@@ -2,19 +2,16 @@
 
 #########################################################
 #							#
-#	Package Name: LampPack				#
-#	Author: Rehmat Alam (https:rehmat.works)	#
-#	Description: LampPack allows you to		#
-#	automate the installation of LAMP stack		#
-# 	and many other utilities on Ubuntu 		#
+#	Package Name: Promesys Initial Install		#
+#	Author: Chris Kemink				#
 #							#
 #########################################################
 
 echo ''
-echo -e "\e[32mWelcome to LampPack LAMP automation bash script\e[39m"
+echo -e "\e[32mWelcome to Promesys Initial install automation bash script\e[39m"
 echo ''
 sleep 1
-echo -e "\e[32mPlease sit back and relax while LampPack configures your server, this may take several minutes\e[39m"
+echo -e "\e[32mPlease sit back and relax while Promesys configures your server, this may take several minutes\e[39m"
 
 echo ''
 
@@ -44,8 +41,7 @@ os=${os#*:}
 bitversion=$(eval "getconf LONG_BIT")
 
 # Define an array of supported OS
-allowedOS=("Ubuntu16.04.1LTS" "Ubuntu14.04.5LTS"
-"Ubuntu14.04.4LTS" "Ubuntu16.04.2LTS" "Ubuntu16.04LTS")
+allowedOS=("Ubuntu18.04.1LTS" "Ubuntu16.04LTS")
 
 # Check if it supports the OS then proceed
 # else exit
