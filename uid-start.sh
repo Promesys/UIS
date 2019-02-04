@@ -57,4 +57,6 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
                 ;;		
         esac
     done
-done
+else
+	echo -e "\e[31mIncompatible operating system detected. Only selected releases of Ubuntu are supported\e[39m"
+fi
