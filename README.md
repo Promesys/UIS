@@ -14,6 +14,11 @@ If git isn't installed, then install it first and then clone the repo
 ```bash
 sudo apt-get -y install git
 ```
+or
+```bash
+git fetch origin
+git reset --hard origin/[tag/branch/commit-id usually: master]
+```
 and then:
 
 ```bash
