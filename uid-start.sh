@@ -11,7 +11,8 @@ showMenu(){
     echo "[2] Set timezone"
     echo "[3] Enable automatic software updates"
     echo "[4] Install NGINX"
-    echo "[5] Exit"
+    echo "[5] Install PHP"
+    echo "[6] Exit"
     echo "----------------"
     read -p "Please Select A Number: " mc
     return $mc
@@ -47,7 +48,7 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    while [[ "$m" != "5" ]]
+    while [[ "$m" != "6" ]]
     do
         if [[ "$m" == "1" ]]; then
             echo "--------------"
@@ -69,6 +70,11 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
             echo "Install NGINX."
             echo "--------------"
             ./includes/nginx.sh
+        elif [[ "$m" == "5" ]]; then
+            echo "--------------"
+            echo "Install PHP."
+            echo "--------------"
+            ./includes/php.sh
         fi
         showMenu
         m=$?
