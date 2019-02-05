@@ -9,7 +9,9 @@ showMenu(){
     echo "----------------"
     echo "[1] Update"
     echo "[2] Set timezone"
-    echo "[3] Exit"
+    echo "[3] Enable automatic software updates"
+    echo "[4] Install NGINX"
+    echo "[5] Exit"
     echo "----------------"
     read -p "Please Select A Number: " mc
     return $mc
@@ -45,7 +47,7 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    while [[ "$m" != "3" ]]
+    while [[ "$m" != "4" ]]
     do
         if [[ "$m" == "1" ]]; then
             echo "--------------"
@@ -57,6 +59,16 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
             echo "Set timezone to Europe/Amsterdam."
             echo "--------------"
             ./includes/timezone.sh
+        elif [[ "$m" == "3" ]]; then
+            echo "--------------"
+            echo "Enable automatic software updates."
+            echo "--------------"
+            ./includes/autoupdate.sh
+        elif [[ "$m" == "4" ]]; then
+            echo "--------------"
+            echo "Install NGINX."
+            echo "--------------"
+            ./includes/nginx.sh
         fi
         showMenu
         m=$?
