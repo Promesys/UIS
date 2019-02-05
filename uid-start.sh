@@ -46,18 +46,20 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
                 echo "Run an update and upgrade for packages."
                 echo "--------------"
                 sh ./includes/update.sh
+                break
                 ;;
             timezone)
                 echo "--------------"
                 echo "Set timezone to Europe/Amsterdam."
                 echo "--------------"
                 sh ./includes/timezone.sh
+                break
                 ;;
             quit)
                 echo "--------------"		
                 echo "Exiting menu." 
                 echo "--------------"
-                exit 0
+                break
                 ;;
             *)		
                 echo "Error: Please try again (select 1..7)!"
