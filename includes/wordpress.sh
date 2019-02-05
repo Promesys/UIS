@@ -32,9 +32,10 @@ if [ -d "$directoryName" ]
     read -s MYSQLPSW
     RESULT=`mysqlshow --user=root --password=$MYSQLPSW $DBName| grep -v Wildcard | grep -o $DBName`
     if [ "$RESULT" != "$DBName" ]; then
+        echo "Creating database..."
         mysqladmin -uroot --password=$MYSQLPSW create $DBName
     fi
-    mysql -uroot --password=$MYSQLPSW $DBName --execute="grant all on $DBName.* to $DBName\@localhost identified by '"$WP_PASSWORD"'"
+    mysql -uroot --password=$MYSQLPSW $DBName --execute="grant all on $DBName.* to $DBName@localhost identified by '"$WP_PASSWORD"'"
     #set database details with perl find and replace
     sed -i "s/database_name_here/$DBName/g" /var/www/$domainName/wp-config.php
     sed -i "s/username_here/root/g" /var/www/$domainName/wp-config.php
