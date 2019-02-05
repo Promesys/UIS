@@ -13,7 +13,8 @@ showMenu(){
     echo "[4] Install NGINX"
     echo "[5] Install PHP"
     echo "[6] Add VHOST"
-    echo "[7] Exit"
+    echo "[7] Install MariaDB"
+    echo "[8] Exit"
     echo "----------------"
     read -p "Please Select A Number: " mc
     return $mc
@@ -49,7 +50,7 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    while [[ "$m" != "7" ]]
+    while [[ "$m" != "8" ]]
     do
         if [[ "$m" == "1" ]]; then
             echo "--------------"
@@ -81,6 +82,11 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
             echo "Add vhost."
             echo "--------------"
             ./includes/vhost.sh
+        elif [[ "$m" == "7" ]]; then
+            echo "--------------"
+            echo "Install MariaDB."
+            echo "--------------"
+            ./includes/mariadb.sh
         fi
         showMenu
         m=$?

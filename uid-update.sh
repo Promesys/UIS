@@ -8,3 +8,4 @@ chmod +x ./includes/timezone.sh
 chmod +x ./includes/update.sh
 chmod +x ./includes/php.sh
 chmod +x ./includes/vhost.sh
+chmod +x ./includes/mariadb.sh
