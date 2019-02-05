@@ -1,9 +1,19 @@
 #!/bin/bash
-echo ''
-echo -e "\e[32mWelcome to Ubuntu Installer Script automation bash script\e[39m"
-echo ''
 
-sleep 1
+showMenu(){
+    echo ''
+    echo -e "\e[32mWelcome to Ubuntu Installer Script automation bash script\e[39m"
+    echo ''
+    echo "----------------"
+    echo " Please make your choice : "
+    echo "----------------"
+    echo "[1] Update"
+    echo "[2] Set timezone"
+    echo "[3] Exit"
+    echo "----------------"
+    read -p "Please Select A Number: " mc
+    return $mc
+}
 
 # Check if is root or not
 if [ "$EUID" -ne 0 ]
@@ -35,37 +45,27 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    PS3="Please make your choice : "
-    
-    # set option list
-    select choice in update timezone quit
+    while [[ "$m" != "3" ]]
     do
-        case $choice in
-            update)
-                echo "--------------"
-                echo "Run an update and upgrade for packages."
-                echo "--------------"
-                sh ./includes/update.sh
-                break
-                ;;
-            timezone)
-                echo "--------------"
-                echo "Set timezone to Europe/Amsterdam."
-                echo "--------------"
-                sh ./includes/timezone.sh
-                break
-                ;;
-            quit)
-                echo "--------------"		
-                echo "Exiting menu." 
-                echo "--------------"
-                break
-                ;;
-            *)		
-                echo "Error: Please try again (select 1..7)!"
-                ;;		
-        esac
+        if [[ "$m" == "1" ]]; then
+            echo "--------------"
+            echo "Run an update and upgrade for packages."
+            echo "--------------"
+            sh ./includes/update.sh
+            break
+            ;;
+        elif [[ "$m" == "2" ]]; then
+            echo "--------------"
+            echo "Set timezone to Europe/Amsterdam."
+            echo "--------------"
+            sh ./includes/timezone.sh
+            break
+            ;;
+        fi
+        showMenu
+        m=$?
     done
+    exit 0;
 else
 	echo -e "\e[31mIncompatible operating system detected. Only selected releases of Ubuntu are supported\e[39m"
 fi
