@@ -3,7 +3,7 @@
 # Install MariaDB
 echo "Installing MariaDB..."
 echo ''
-sudo apt-get install mariadb-server
+sudo apt-get install mariadb-server mariadb-client
 
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
