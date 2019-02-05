@@ -80,7 +80,7 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
             echo "--------------"
             echo "Add vhost."
             echo "--------------"
-            ./includes/php.sh
+            ./includes/vhost.sh
         fi
         showMenu
         m=$?

@@ -1,6 +1,9 @@
 #!/bin/bash
 theAction=$1
 domainName=$2
+
+theAction="create"
+read -p "\e[31mPlease provide the domain name\e[39m: " domainName
 directoryName="/var/www/$domainName"
 
 if [ -z "$domainName" ]
@@ -34,7 +37,7 @@ if [ "$theAction" == "create" ]
 	</Directory>
 </VirtualHost>" > /etc/nginx/sites-available/$domainName.conf
 	sudo echo "<?php phpinfo();?>" > "$directoryName/phpinfo.php"
-	sudo a2ensite $domainName &>/dev/null
+    ln -s /etc/nginx/sites-available/$domainName.conf /etc/nginx/sites-enabled/ &>/dev/null
 	sudo chmod -R $directoryName &>/dev/null
 	sudo chown -R www-data:www-data $directoryName &>/dev/null
 	echo $directoryName
