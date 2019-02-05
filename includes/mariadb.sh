@@ -3,7 +3,7 @@
 # Install MariaDB
 echo "Installing MariaDB..."
 echo ''
-sudo apt-get install mariadb-server mariadb-client
+sudo apt-get install mariadb-server mariadb-client -y
 
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
@@ -49,4 +49,4 @@ sudo apt-get -purge expect
 # Save the MySQL root password in .my.cnf]
 sudo echo "[client]
 user=root
-password=$ROOT_PASS" > /root/.my.cnf
+password=$NEW_MYSQL_PASSWORD" > /root/.my.cnf
