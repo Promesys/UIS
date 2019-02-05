@@ -4,10 +4,10 @@
 echo "Installing WordPress..."
 echo ''
 
-read -p "Please provide the domain name: " domainNameInput
-domainName=${domainNameInput//./_}
+read -p "Please provide the domain name: " domainName
+DBName=${domainName//./_}
 echo ""
-echo "Provide domainname:" $domainName
+echo "Provided domainname:" $domainName
 directoryName="/var/www/$domainName"
 
 if [ -d "$directoryName" ]
@@ -30,10 +30,10 @@ if [ -d "$directoryName" ]
     # Generate database
     echo "Please provide MariaDB root password please:"
     read -s MYSQLPSW
-    mysqladmin -uroot --password=$MYSQLPSW create $domainName
-    mysql -uroot --password=$MYSQLPSW $domainName --execute="grant all on $domainName.* to $domainName\@localhost identified by '"$WP_PASSWORD"'"
+    mysqladmin -uroot --password=$MYSQLPSW create $DBName
+    mysql -uroot --password=$MYSQLPSW $DBName --execute="grant all on $DBName.* to $DBName\@localhost identified by '"$WP_PASSWORD"'"
     #set database details with perl find and replace
-    sed -i "s/database_name_here/$domainName/g" /var/www/$domainName/wp-config.php
+    sed -i "s/database_name_here/$DBName/g" /var/www/$domainName/wp-config.php
     sed -i "s/username_here/root/g" /var/www/$domainName/wp-config.php
     sed -i "s/password_here/$WP_PASSWORD/g" /var/www/$domainName/wp-config.php
     # Save the WP root password in .wp.cnf]
