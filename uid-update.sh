@@ -1,12 +1,12 @@
 git fetch origin
 git reset --hard origin/master
-chmod +x ./uid-start.sh
-chmod +x ./uid-update.sh
-chmod +x ./includes/autoupdate.sh
-chmod +x ./includes/nginx.sh
-chmod +x ./includes/timezone.sh
-chmod +x ./includes/update.sh
-chmod +x ./includes/php.sh
-chmod +x ./includes/vhost.sh
-chmod +x ./includes/mariadb.sh
-chmod +x ./includes/wordpress.sh
+sudo chmod +x ./uid-start.sh
+sudo chmod +x ./uid-update.sh
+sudo chmod +x ./includes/autoupdate.sh
+sudo chmod +x ./includes/nginx.sh
+sudo chmod +x ./includes/timezone.sh
+sudo chmod +x ./includes/update.sh
+sudo chmod +x ./includes/php.sh
+sudo chmod +x ./includes/vhost.sh
+sudo chmod +x ./includes/mariadb.sh
+sudo chmod +x ./includes/wordpress.sh

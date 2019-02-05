@@ -11,25 +11,26 @@ if [ -d "$directoryName" ]
 	then
     # Change directory to web root
     cd "/var/www/"
+    rm -rf $domainName
     # Download Wordpress
     wget http://wordpress.org/latest.tar.gz
     # Extract Wordpress
     tar -xzvf latest.tar.gz
     # Rename wordpress directory to domain name
     mv wordpress $domainName
-    # Change directory to blog
+    # Change directorycd
     cd /var/www/$domainName/
     # Create a WordPress config file 
     mv wp-config-sample.php wp-config.php
     # Generate random password
     WP_PASSWORD=`date +%s|sha256sum|base64|head -c 15`
     #set database details with perl find and replace
-    sed -i "s/$domainName/g" /var/www/$domainName/wp-config.php
-    sed -i "s/$domainName/root/g" /var/www/$domainName/wp-config.php
-    sed -i "s/$WP_PASSWORD/password/g" /var/www/$domainName/wp-config.php
+    sed -i "s/database_name_here/$domainName/g" /var/www/$domainName/wp-config.php
+    sed -i "s/username_here/root/g" /var/www/$domainName/wp-config.php
+    sed -i "s/password_here/$WP_PASSWORD/g" /var/www/$domainName/wp-config.php
     # Save the WP root password in .wp.cnf]
     sudo echo "[wordpress]
-    user=$domainName
+    user=root
     password=$WP_PASSWORD" > /root/.wp.cnf
     #create uploads folder and set permissions
     mkdir wp-content/uploads
