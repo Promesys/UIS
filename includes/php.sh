@@ -5,7 +5,7 @@ echo "Installing PHP..."
 echo ''
 # Install latest nginx version from community maintained ppa
 sudo apt-get install software-properties-common -y
-sudo add-apt-repository ppa:ondrej/nginx -y
+sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get update
 # Install PHP 7.3
 apt install php7.3 php7.3-cli php7.3-common -y
