@@ -24,6 +24,7 @@ sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/fpm/php.ini
 sed -i "s/upload_max_filesize = .*/upload_max_filesize = 256M/" /etc/php/7.3/fpm/php.ini
 sed -i "s/post_max_size = .*/post_max_size = 256M/" /etc/php/7.3/fpm/php.ini
 sed -i "s/;date.timezone.*/date.timezone = Europe\/Amsterdam/" /etc/php/7.3/fpm/php.ini
+sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.3/fpm/php.ini
 # Tune PHP-FPM pool settings
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.3/fpm/pool.d/www.conf
 sed -i "s/;request_terminate_timeout.*/request_terminate_timeout = 60/" /etc/php/7.3/fpm/pool.d/www.conf
@@ -32,6 +33,8 @@ sed -i "s/pm\.start_servers.*/pm.start_servers = 20/" /etc/php/7.3/fpm/pool.d/ww
 sed -i "s/pm\.min_spare_servers.*/pm.min_spare_servers = 20/" /etc/php/7.3/fpm/pool.d/www.conf
 sed -i "s/pm\.max_spare_servers.*/pm.max_spare_servers = 35/" /etc/php/7.3/fpm/pool.d/www.conf
 sed -i "s/;pm\.max_requests.*/pm.max_requests = 500/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i 's/listen.owner = www-data/listen.owner = nginx/g' /etc/php/7.3/fpm/pool.d/www.conf
+sed -i 's/listen.group = www-data/listen.group = nginx/g' /etc/php/7.3/fpm/pool.d/www.conf
 
 sudo systemctl restart nginx.service
 sudo systemctl restart php7.3-fpm.service

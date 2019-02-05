@@ -26,16 +26,19 @@ if [ "$theAction" == "create" ]
 		exit 
 	fi
 	sudo mkdir $directoryName
-	sudo echo "<VirtualHost *:80>
-	ServerName $domainName
-	DocumentRoot \"$directoryName/\"
-	<Directory \"$directoryName\">
-		Options FollowSymLinks
-		AllowOverride All
-		Order allow,deny
-		Allow from all
-	</Directory>
-</VirtualHost>" > /etc/nginx/sites-available/$domainName.conf
+	sudo echo "server {
+      listen          80;
+      server_name     $domainName;
+      root            /var/www/$domainName;
+      index           index.php;
+      try_files \$uri  /index.php;
+      location ~* \.php$ {
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        include         fastcgi_params;
+        fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
+        fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
+      }
+    }" > /etc/nginx/sites-available/$domainName.conf
 	sudo echo "<?php phpinfo();?>" > "$directoryName/phpinfo.php"
     ln -s /etc/nginx/sites-available/$domainName.conf /etc/nginx/sites-enabled/ &>/dev/null
 	sudo chmod -R $directoryName &>/dev/null
@@ -45,8 +48,6 @@ elif [ "$theAction" == "delete" ]
 	then
 	if [ -f "/etc/nginx/sites-enabled/$domainName.conf" ]
 		then
-		sudo a2dissite $domainName &>/dev/null
-		sudo rm -r $directoryName
 		sudo rm /etc/nginx/sites-available/$domainName.conf
 		echo -e "\e[32mThe website $domainName deleted!\e[39m"
 	else
