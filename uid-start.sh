@@ -14,7 +14,8 @@ showMenu(){
     echo "[5] Install PHP"
     echo "[6] Add VHOST"
     echo "[7] Install MariaDB"
-    echo "[8] Exit"
+    echo "[8] Install WordPress"
+    echo "[9] Exit"
     echo "----------------"
     read -p "Please Select A Number: " mc
     return $mc
@@ -50,7 +51,7 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    while [[ "$m" != "8" ]]
+    while [[ "$m" != "9" ]]
     do
         if [[ "$m" == "1" ]]; then
             echo "--------------"
@@ -87,6 +88,11 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
             echo "Install MariaDB."
             echo "--------------"
             ./includes/mariadb.sh
+        elif [[ "$m" == "8" ]]; then
+            echo "--------------"
+            echo "Install WordPress."
+            echo "--------------"
+            ./includes/wordpress.sh
         fi
         showMenu
         m=$?
