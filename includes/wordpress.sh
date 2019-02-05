@@ -5,7 +5,9 @@ echo "Installing WordPress..."
 echo ''
 
 read -p "Please provide the domain name: " domainNameInput
-domainName=$domainNameInput | tr . _
+domainName=${$domainNameInput//./_}
+echo ""
+echo "Provide domainname:" $domainName
 directoryName="/var/www/$domainName"
 
 if [ -d "$directoryName" ]
