@@ -41,6 +41,11 @@ sed -i "s/$domainName/g" /var/www/$domainName/wp-config.php
 sed -i "s/$domainName/root/g" /var/www/$domainName/wp-config.php
 sed -i "s/$WP_PASSWORD/password/g" /var/www/$domainName/wp-config.php
 
+# Save the WP root password in .wp.cnf]
+sudo echo "[wordpress]
+user=$domainName
+password=$WP_PASSWORD" > /root/.wp.cnf
+
 #create uploads folder and set permissions
 mkdir wp-content/uploads
 chmod 777 wp-content/uploads
