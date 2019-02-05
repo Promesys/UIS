@@ -24,6 +24,10 @@ if [ -d "$directoryName" ]
     mv wp-config-sample.php wp-config.php
     # Generate random password
     WP_PASSWORD=`date +%s|sha256sum|base64|head -c 15`
+    # Generate database
+    echo "Please provide MariaDB root password please:"
+    read -s MYSQLPSW
+    mysql -uroot --password=$MYSQLPSW $domainName --execute="grant all on $domainName.* to $domainName\@localhost identified by '"$WP_PASSWORD"'"
     #set database details with perl find and replace
     sed -i "s/database_name_here/$domainName/g" /var/www/$domainName/wp-config.php
     sed -i "s/username_here/root/g" /var/www/$domainName/wp-config.php
