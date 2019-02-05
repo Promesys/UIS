@@ -33,8 +33,6 @@ sed -i "s/pm\.start_servers.*/pm.start_servers = 20/" /etc/php/7.3/fpm/pool.d/ww
 sed -i "s/pm\.min_spare_servers.*/pm.min_spare_servers = 20/" /etc/php/7.3/fpm/pool.d/www.conf
 sed -i "s/pm\.max_spare_servers.*/pm.max_spare_servers = 35/" /etc/php/7.3/fpm/pool.d/www.conf
 sed -i "s/;pm\.max_requests.*/pm.max_requests = 500/" /etc/php/7.3/fpm/pool.d/www.conf
-sed -i 's/listen.owner = www-data/listen.owner = nginx/g' /etc/php/7.3/fpm/pool.d/www.conf
-sed -i 's/listen.group = www-data/listen.group = nginx/g' /etc/php/7.3/fpm/pool.d/www.conf
 
 sudo systemctl restart nginx.service
 sudo systemctl restart php7.3-fpm.service

@@ -3,17 +3,12 @@ theAction=$1
 domainName=$2
 
 theAction="create"
-read -p "\e[31mPlease provide the domain name\e[39m: " domainName
+read -p "Please provide the domain name: " domainName
 directoryName="/var/www/$domainName"
 
-if [ -z "$domainName" ]
-	then
-	echo -e "\e[31mPlease provide the domain name\e[39m"
-	exit 
-fi
 if [ -z "$theAction" ]
 	then
-	echo -e "\e[31mAction not provided, it must be either create or delete\e[39m"
+	echo -e "Action not provided, it must be either create or delete."
 	exit
 fi
 
@@ -22,7 +17,7 @@ if [ "$theAction" == "create" ]
 
 	if [ -d "$directoryName" ]
 		then
-		echo -e "\e[31mDirectory already exists. If not required, please delete first\e[39m"
+		echo -e "Directory already exists. If not required, please delete first."
 		exit 
 	fi
 	sudo mkdir $directoryName
@@ -31,12 +26,12 @@ if [ "$theAction" == "create" ]
       server_name     $domainName;
       root            /var/www/$domainName;
       index           index.php;
-      try_files \$uri  /index.php;
+      try_files \$uri /index.php;
       location ~* \.php$ {
-        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
-        include         fastcgi_params;
+        fastcgi_pass    unix:/run/php/php7.3-fpm.sock;
+        include         fastcgi.conf;
         fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
-        fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
+        fastcgi_index   index.php;
       }
     }" > /etc/nginx/sites-available/$domainName.conf
 	sudo echo "<?php phpinfo();?>" > "$directoryName/phpinfo.php"
@@ -49,13 +44,13 @@ elif [ "$theAction" == "delete" ]
 	if [ -f "/etc/nginx/sites-enabled/$domainName.conf" ]
 		then
 		sudo rm /etc/nginx/sites-available/$domainName.conf
-		echo -e "\e[32mThe website $domainName deleted!\e[39m"
+		echo -e "The website $domainName deleted!"
 	else
-		echo -e "\e[31mWe did not find vhost of $domainName\e[39m"
+		echo -e "We did not find vhost of $domainName"
 		exit
 	fi
 else
-	echo -e "\e[31mThe action not recognized!\e[39m"
+	echo -e "The action not recognized!"
 	exit
 fi
 sudo service nginx restart &>/dev/null
