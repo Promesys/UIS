@@ -20,3 +20,5 @@ sed -i "s/# server_tokens off/server_tokens off/" /etc/nginx/nginx.conf
 sudo service nginx
 # Start nginx if it is not already running
 sudo service nginx start
+# Check status
+sudo systemctl status nginx
