@@ -47,7 +47,7 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    while [[ "$m" != "4" ]]
+    while [[ "$m" != "5" ]]
     do
         if [[ "$m" == "1" ]]; then
             echo "--------------"
