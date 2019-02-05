@@ -12,7 +12,8 @@ showMenu(){
     echo "[3] Enable automatic software updates"
     echo "[4] Install NGINX"
     echo "[5] Install PHP"
-    echo "[6] Exit"
+    echo "[6] Add VHOST"
+    echo "[7] Exit"
     echo "----------------"
     read -p "Please Select A Number: " mc
     return $mc
@@ -48,7 +49,7 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    while [[ "$m" != "6" ]]
+    while [[ "$m" != "7" ]]
     do
         if [[ "$m" == "1" ]]; then
             echo "--------------"
@@ -73,6 +74,11 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
         elif [[ "$m" == "5" ]]; then
             echo "--------------"
             echo "Install PHP."
+            echo "--------------"
+            ./includes/php.sh
+        elif [[ "$m" == "6" ]]; then
+            echo "--------------"
+            echo "Add vhost."
             echo "--------------"
             ./includes/php.sh
         fi
