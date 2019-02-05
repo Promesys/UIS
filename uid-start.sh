@@ -51,12 +51,12 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
             echo "--------------"
             echo "Run an update and upgrade for packages."
             echo "--------------"
-            sh ./includes/update.sh
+            ./includes/update.sh
         elif [[ "$m" == "2" ]]; then
             echo "--------------"
             echo "Set timezone to Europe/Amsterdam."
             echo "--------------"
-            sh ./includes/timezone.sh
+            ./includes/timezone.sh
         fi
         showMenu
         m=$?
