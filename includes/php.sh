@@ -6,6 +6,7 @@ echo ''
 # Install latest nginx version from community maintained ppa
 sudo apt-get install software-properties-common -y
 sudo add-apt-repository ppa:ondrej/php -y
+sudo add-apt-repository universe -y
 sudo apt-get update
 # Install PHP 7.3
 apt install php7.3 php7.3-cli php7.3-common -y
@@ -17,7 +18,7 @@ sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.3/cli/php.ini
 sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/cli/php.ini
 sed -i "s/;date.timezone.*/date.timezone = Europe/Amsterdam/" /etc/php/7.3/cli/php.ini
 # Tweak PHP-FPM settings
-sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.2/fpm/php.ini
+sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.3/fpm/php.ini
 sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.3/fpm/php.ini
 sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/fpm/php.ini
 sed -i "s/upload_max_filesize = .*/upload_max_filesize = 256M/" /etc/php/7.3/fpm/php.ini
