@@ -27,6 +27,7 @@ if [ -d "$directoryName" ]
     # Generate database
     echo "Please provide MariaDB root password please:"
     read -s MYSQLPSW
+    mysqladmin -uroot --password=$MYSQLPSW create $domainName
     mysql -uroot --password=$MYSQLPSW $domainName --execute="grant all on $domainName.* to $domainName\@localhost identified by '"$WP_PASSWORD"'"
     #set database details with perl find and replace
     sed -i "s/database_name_here/$domainName/g" /var/www/$domainName/wp-config.php
