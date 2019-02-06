@@ -15,9 +15,11 @@ showMenu(){
     echo "[6] Add VHOST"
     echo "[7] Install MariaDB"
     echo "[8] Install WordPress"
-    echo "[9] Exit"
+    echo "[9] Install Fail2ban"
+    echo "[a] Install WP-CLI"
+    echo "[e] Exit"
     echo "----------------"
-    read -p "Please Select A Number: " mc
+    read -p "Please make a selection: " mc
     return $mc
 }
 
@@ -51,7 +53,7 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    while [[ "$m" != "9" ]]
+    while [[ "$m" != "e" ]]
     do
         if [[ "$m" == "1" ]]; then
             echo "--------------"
@@ -93,6 +95,16 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
             echo "Install WordPress."
             echo "--------------"
             ./includes/wordpress.sh
+        elif [[ "$m" == "9" ]]; then
+            echo "--------------"
+            echo "Install Fail2ban."
+            echo "--------------"
+            ./includes/fail2ban.sh
+        elif [[ "$m" == "a" ]]; then
+            echo "--------------"
+            echo "Install WP-CLI."
+            echo "--------------"
+            ./includes/wp-cli.sh
         fi
         showMenu
         m=$?

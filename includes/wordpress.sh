@@ -38,7 +38,7 @@ if [ -d "$directoryName" ]
     mysql -uroot --password=$MYSQLPSW $DBName --execute="grant all on $DBName.* to $DBName@localhost identified by '"$WP_PASSWORD"'"
     #set database details with perl find and replace
     sed -i "s/database_name_here/$DBName/g" /var/www/$domainName/wp-config.php
-    sed -i "s/username_here/root/g" /var/www/$domainName/wp-config.php
+    sed -i "s/username_here/$DBName/g" /var/www/$domainName/wp-config.php
     sed -i "s/password_here/$WP_PASSWORD/g" /var/www/$domainName/wp-config.php
     # Save the WP root password in .wp.cnf]
     sudo echo "[wordpress]
