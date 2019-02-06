@@ -11,33 +11,33 @@ directoryName="/var/www/$domainName"
 cd $domainName
 wp cli Update
 # tagline
-wp option update blogdescription ''
+sudo -u www-data wp option update blogdescription ''
 # Install the Dutch core language pack.
-wp language core install nl_NL
+sudo -u www-data wp language core install nl_NL
 # Activate the Dutch core language pack.
-wp language core activate nl_NL
+sudo -u www-data wp language core activate nl_NL
 # Set the timezone string.
-wp option update timezone_string "Europe/Amsterdam"
+sudo -u www-data wp option update timezone_string "Europe/Amsterdam"
 # Delete installed posts.
-wp post delete $(wp post list --post_type='post' --format=ids) --force
+sudo -u www-data wp post delete $(wp post list --post_type='post' --format=ids) --force
 # Delete an existing comment.
-wp comment delete 1 --force
+sudo -u www-data wp comment delete 1 --force
 # Remove Base Plugins
-wp plugin delete hello
-wp plugin delete akismet
+sudo -u www-data wp plugin delete hello
+sudo -u www-data wp plugin delete akismet
 # Installs theme
-wp theme install "Sydney"
+sudo -u www-data wp theme install "Sydney"
 # Creates blank child theme and enables it
-wp scaffold child-theme Sydney-child --parent_theme=Sydney --theme_name="Sydney Child" --author='Chris' --author_uri='' --theme_uri='' --activate
+sudo -u www-data wp scaffold child-theme Sydney-child --parent_theme=Sydney --theme_name="Sydney Child" --author='Chris' --author_uri='' --theme_uri='' --activate
 # Plugins to be activated
 declare -a arr=("elementor" "duplicate post" "sydney toolbox" "wp-serverinfo" "smart slider 3" "wp mail smtp" "redis object cache")
 for i in "${arr[@]}"
 do
-    wp plugin install $i --activate
+    sudo -u www-data wp plugin install $i --activate
 done
 # Remove themes
-wp theme delete twentynineteen
-wp theme delete twentyseventeen
-wp theme delete twentysixteen
+sudo -u www-data wp theme delete twentynineteen
+sudo -u www-data wp theme delete twentyseventeen
+sudo -u www-data wp theme delete twentysixteen
 # Update permalink structure
-$ wp rewrite structure '/%postname%'
+sudo -u www-data wp rewrite structure '/%postname%'
