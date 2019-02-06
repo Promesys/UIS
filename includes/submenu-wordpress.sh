@@ -30,7 +30,7 @@ do
         echo "--------------"
         echo "Configure WordPress."
         echo "--------------"
-        ./includes/configure-wordpress.sh
+        sudo -u www-data ./includes/configure-wordpress.sh
     elif [[ "$m" == "4" ]]; then
         echo "--------------"
         echo "Install Redit."

@@ -11,9 +11,9 @@ cd $directoryName
 # tagline
 wp option update blogdescription ''
 # Install the Dutch core language pack.
-wp language core install nl_NL
+wp language core install nl_NL --allow-root
 # Activate the Dutch core language pack.
-wp switch-language nl_NL
+wp site switch-language nl_NL
 # Set the timezone string.
 wp option update timezone_string "Europe/Amsterdam"
 # Delete installed posts.

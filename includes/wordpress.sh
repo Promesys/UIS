@@ -40,13 +40,14 @@ if [ -d "$directoryName" ]
     sed -i "s/database_name_here/$DBName/g" /var/www/$domainName/wp-config.php
     sed -i "s/username_here/$DBName/g" /var/www/$domainName/wp-config.php
     sed -i "s/password_here/$WP_PASSWORD/g" /var/www/$domainName/wp-config.php
-    # Save the WP root password in .wp.cnf]
-    sudo echo "[wordpress]
-    user=root
-    password=$WP_PASSWORD" > /root/.wp.cnf
+    echo "define('FS_METHOD', 'direct');" >> /var/www/$domainName/wp-config.php
     #create uploads folder and set permissions
     mkdir wp-content/uploads
     chmod 777 wp-content/uploads
+    #Fix permissions in case you ran as root
+    sudo chown -R www-data:www-data $directoryName
+    sudo find $directoryName -type f -exec chmod 644 {} +
+    sudo find $directoryName -type d -exec chmod 755 {} +
     #remove wp file
     rm /var/www/latest.tar.gz
     echo "Ready, go to http://$domainName and enter the blog info to finish the installation."
