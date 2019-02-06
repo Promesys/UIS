@@ -15,12 +15,12 @@ update-alternatives --set php /usr/bin/php7.3
 # Update PHP CLI configuration
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.3/cli/php.ini
 sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.3/cli/php.ini
-sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/cli/php.ini
+sed -i "s/memory_limit = .*/memory_limit = 128M/" /etc/php/7.3/cli/php.ini
 sed -i "s/;date.timezone.*/date.timezone = Europe\/Amsterdam/" /etc/php/7.3/cli/php.ini
 # Tweak PHP-FPM settings
 sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.3/fpm/php.ini
 sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.3/fpm/php.ini
-sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/fpm/php.ini
+sed -i "s/memory_limit = .*/memory_limit = 128M/" /etc/php/7.3/fpm/php.ini
 sed -i "s/upload_max_filesize = .*/upload_max_filesize = 256M/" /etc/php/7.3/fpm/php.ini
 sed -i "s/post_max_size = .*/post_max_size = 256M/" /etc/php/7.3/fpm/php.ini
 sed -i "s/;date.timezone.*/date.timezone = Europe\/Amsterdam/" /etc/php/7.3/fpm/php.ini

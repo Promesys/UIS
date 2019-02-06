@@ -7,7 +7,6 @@ showMenu(){
     echo "[1] Install WordPress"
     echo "[2] Install WP-CLI"
     echo "[3] Configure WordPress"
-    echo "[4] Install Redis"
     echo "[0] Terug"
     echo "---------------------------"
     read -p "Please make a selection: " mc
@@ -31,11 +30,6 @@ do
         echo "Configure WordPress."
         echo "--------------"
         sudo -u www-data ./includes/configure-wordpress.sh
-    elif [[ "$m" == "4" ]]; then
-        echo "--------------"
-        echo "Install Redit."
-        echo "--------------"
-        ./includes/redis.sh
     fi
     showMenu
     m=$?
