@@ -34,10 +34,10 @@ wp plugin install sydney-toolbox --activate
 wp plugin install wp-serverinfo --activate
 wp plugin install smart-slider-3 --activate
 wp plugin install wp-mail-smtp --activate
-wp plugin install redit-object-cache --activate
+wp plugin install redis-object-cache --activate
 # Remove themes
 wp theme delete twentynineteen
 wp theme delete twentyseventeen
 wp theme delete twentysixteen
 # Update permalink structure
-wp rewrite structure '/%postname%'
+wp option update permalink_structure '/%postname%'
