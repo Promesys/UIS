@@ -20,22 +20,22 @@ do
         echo "--------------"
         echo "Install WordPress."
         echo "--------------"
-        ./wordpress.sh
+        ./includes/wordpress.sh
     elif [[ "$m" == "2" ]]; then
         echo "--------------"
         echo "Install WP-CLI."
         echo "--------------"
-        ./wp-cli.sh
+        ./includes/wp-cli.sh
     elif [[ "$m" == "3" ]]; then
         echo "--------------"
         echo "Configure WordPress."
         echo "--------------"
-        ./configure-wordpress.sh
+        ./includes/configure-wordpress.sh
     elif [[ "$m" == "4" ]]; then
         echo "--------------"
         echo "Install Redit."
         echo "--------------"
-        ./redis.sh
+        ./includes/redis.sh
     fi
     showMenu
     m=$?
