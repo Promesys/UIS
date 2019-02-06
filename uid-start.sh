@@ -4,21 +4,20 @@ showMenu(){
     echo ''
     echo -e "\e[32mWelcome to Ubuntu Installer Script automation bash script\e[39m"
     echo ''
-    echo "----------------"
+    echo "---------------------------"
     echo " Please make your choice : "
-    echo "----------------"
-    echo "[1] Update"
+    echo "---------------------------"
+    echo "[1] Update Ubuntu"
     echo "[2] Set timezone"
     echo "[3] Enable automatic software updates"
     echo "[4] Install NGINX"
     echo "[5] Install PHP"
     echo "[6] Add VHOST"
     echo "[7] Install MariaDB"
-    echo "[8] Install WordPress"
+    echo "[8] Configure WordPress"
     echo "[9] Install Fail2ban"
-    echo "[a] Install WP-CLI"
-    echo "[e] Exit"
-    echo "----------------"
+    echo "[0] Exit"
+    echo "---------------------------"
     read -p "Please make a selection: " mc
     return $mc
 }
@@ -53,7 +52,7 @@ allowedOS=("Ubuntu16.04.1LTS" "Ubuntu18.04.1LTS")
 # else exit
 
 if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
-    while [[ "$m" != "e" ]]
+    while [[ "$m" != "0" ]]
     do
         if [[ "$m" == "1" ]]; then
             echo "--------------"
@@ -92,19 +91,14 @@ if [[ " ${allowedOS[@]} " =~ " ${os} " ]]; then
             ./includes/mariadb.sh
         elif [[ "$m" == "8" ]]; then
             echo "--------------"
-            echo "Install WordPress."
+            echo "Configure WordPress."
             echo "--------------"
-            ./includes/wordpress.sh
+            ./includes/submenu-wordpress.sh
         elif [[ "$m" == "9" ]]; then
             echo "--------------"
             echo "Install Fail2ban."
             echo "--------------"
             ./includes/fail2ban.sh
-        elif [[ "$m" == "a" ]]; then
-            echo "--------------"
-            echo "Install WP-CLI."
-            echo "--------------"
-            ./includes/wp-cli.sh
         fi
         showMenu
         m=$?
