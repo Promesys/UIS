@@ -4,12 +4,10 @@
 echo "Configuring WordPress..."
 echo ''
 read -p "Please provide the domain name: " domainName
-DBName=${domainName//./_}
 echo ""
 echo "Provided domainname:" $domainName
 directoryName="/var/www/$domainName"
-cd $domainName
-wp cli Update
+cd $directoryName
 # tagline
 sudo -u www-data wp option update blogdescription ''
 # Install the Dutch core language pack.
