@@ -9,33 +9,33 @@ echo "Provided domainname:" $domainName
 directoryName="/var/www/$domainName"
 cd $directoryName
 # tagline
-sudo -u www-data -i -- wp option update blogdescription ''
+wp option update blogdescription ''
 # Install the Dutch core language pack.
-sudo -u www-data -i -- wp language core install nl_NL
+wp language core install nl_NL
 # Activate the Dutch core language pack.
-sudo -u www-data -i -- wp switch-language nl_NL
+wp switch-language nl_NL
 # Set the timezone string.
-sudo -u www-data -i -- wp option update timezone_string "Europe/Amsterdam"
+wp option update timezone_string "Europe/Amsterdam"
 # Delete installed posts.
-sudo -u www-data -i -- wp post delete $(wp post list --post_type='post' --format=ids) --force
+wp post delete $(wp post list --post_type='post' --format=ids) --force
 # Delete an existing comment.
-sudo -u www-data -i -- wp comment delete 1 --force
+wp comment delete 1 --force
 # Remove Base Plugins
-sudo -u www-data -i -- wp plugin delete hello
-sudo -u www-data -i -- wp plugin delete akismet
+wp plugin delete hello
+wp plugin delete akismet
 # Installs theme
-sudo -u www-data -i -- wp theme install "Sydney"
+wp theme install "Sydney"
 # Creates blank child theme and enables it
-sudo -u www-data -i -- wp scaffold child-theme Sydney-child --parent_theme=Sydney --theme_name="Sydney Child" --author='Chris' --author_uri='' --theme_uri='' --activate
+wp scaffold child-theme Sydney-child --parent_theme=Sydney --theme_name="Sydney Child" --author='Chris' --author_uri='' --theme_uri='' --activate
 # Plugins to be activated
 declare -a arr=("elementor" "duplicate post" "sydney toolbox" "wp-serverinfo" "smart slider 3" "wp mail smtp" "redis object cache")
 for i in "${arr[@]}"
 do
-    sudo -u www-data -i -- wp plugin install $i --activate
+    wp plugin install $i --activate
 done
 # Remove themes
-sudo -u www-data -i -- wp theme delete twentynineteen
-sudo -u www-data -i -- wp theme delete twentyseventeen
-sudo -u www-data -i -- wp theme delete twentysixteen
+wp theme delete twentynineteen
+wp theme delete twentyseventeen
+wp theme delete twentysixteen
 # Update permalink structure
-sudo -u www-data -i -- wp rewrite structure '/%postname%'
+wp rewrite structure '/%postname%'
