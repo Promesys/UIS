@@ -75,4 +75,8 @@ spssl sub blog.example.com
 To force the SSL on a sub domain, you have to do the same as you did above
 ```bash
 spssl sub blog.example.com force
+
+## MariaDB root password
+The root password is saved in /root/.my.cfg.
+Type sudo su for getting in that directory.
 ```

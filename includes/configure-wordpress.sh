@@ -11,7 +11,7 @@ cd $directoryName
 # tagline
 wp option update blogdescription ''
 # Install the Dutch core language pack.
-wp language core install nl_NL --allow-root
+wp language core install nl_NL
 # Activate the Dutch core language pack.
 wp site switch-language nl_NL
 # Set the timezone string.
@@ -26,13 +26,15 @@ wp plugin delete akismet
 # Installs theme
 wp theme install "Sydney"
 # Creates blank child theme and enables it
-wp scaffold child-theme Sydney-child --parent_theme=Sydney --theme_name="Sydney Child" --author='Chris' --author_uri='' --theme_uri='' --activate
+wp scaffold child-theme Sydney-child --parent_theme=sydney --theme_name="Sydney Child" --author='Chris' --activate
 # Plugins to be activated
-declare -a arr=("elementor" "duplicate post" "sydney toolbox" "wp-serverinfo" "smart slider 3" "wp mail smtp" "redis object cache")
-for i in "${arr[@]}"
-do
-    wp plugin install $i --activate
-done
+wp plugin install elementor --activate
+wp plugin install duplicate-post --activate
+wp plugin install sydney-toolbox --activate
+wp plugin install wp-serverinfo --activate
+wp plugin install smart-slider-3 --activate
+wp plugin install wp-mail-smtp --activate
+wp plugin install redit-object-cache --activate
 # Remove themes
 wp theme delete twentynineteen
 wp theme delete twentyseventeen
